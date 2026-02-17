@@ -4,9 +4,28 @@
   --muted: #aeb7c5;
   --line: #28303d;
   --accent: #6F00FF;
+  color-scheme: dark;
 }
+
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; background: radial-gradient(circle at 20% 10%, #0D1420, var(--bg) 55%); color: var(--fg); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+
+html {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background-color: var(--bg);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100svh;
+  background: radial-gradient(circle at 20% 10%, #0D1420, var(--bg) 55%);
+  color: var(--fg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  overscroll-behavior-y: none;
+}
+
 .shell { max-width: 980px; margin: 0 auto; padding: 40px 20px 56px; }
 header { border-bottom: 1px solid var(--line); padding-bottom: 20px; margin-bottom: 24px; }
 .wordmark { margin: 0; letter-spacing: .08em; font-size: clamp(28px, 7vw, 56px); }
