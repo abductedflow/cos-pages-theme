@@ -15,6 +15,26 @@
     return `<a href="${href}"${ext}>${label}</a>`;
   }
 
+  function faviconLetter(cfg) {
+    const source = String(cfg.wordmark || cfg.metaTitle || "S");
+    const first = source.trim().charAt(0) || "S";
+    return first.toUpperCase();
+  }
+
+  function setFavicon(letter) {
+    const svg = `<?xml version="1.0" encoding="UTF-8"?>\n<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">\n  <rect width="64" height="64" rx="12" fill="#6F00FF"/>\n  <text x="50%" y="52%" dominant-baseline="middle" text-anchor="middle" fill="#FFFFFF" font-size="40" font-family="Arial, Helvetica, sans-serif" font-weight="700">${letter}</text>\n</svg>`;
+    const href = `data:image/svg+xml,${encodeURIComponent(svg)}`;
+
+    let link = document.querySelector('link[rel="icon"]');
+    if (!link) {
+      link = document.createElement("link");
+      link.setAttribute("rel", "icon");
+      document.head.appendChild(link);
+    }
+    link.setAttribute("type", "image/svg+xml");
+    link.setAttribute("href", href);
+  }
+
   async function loadConfig() {
     const res = await fetch("config.json", { cache: "no-store" });
     if (!res.ok) throw new Error("Unable to load config.json");
@@ -25,6 +45,7 @@
     document.title = cfg.metaTitle || "Site";
     const desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute("content", cfg.metaDescription || "");
+    setFavicon(faviconLetter(cfg));
 
     const nav = (cfg.nav || []).map(linkHtml).join("");
     const cards = (cfg.sections || []).map((s) => {
