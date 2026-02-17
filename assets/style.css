@@ -3,7 +3,7 @@
   --fg: #ecf0f6;
   --muted: #aeb7c5;
   --line: #28303d;
-  --accent: #7dc7ff;
+  --accent: #6F00FF;
 }
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; background: radial-gradient(circle at 20% 10%, #1d2633, var(--bg) 55%); color: var(--fg); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
